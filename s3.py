@@ -61,4 +61,7 @@ for i in response.get("Contents",None):
 
 # DOWNLOAD A FILE FROM S3
 # Descargar un archivo del s3
-client.Bucket("My_Bucket_name").download_file("file_name","file_path/file_name")
+#how to dowonload single file
+client.download_file(Bucket="bucket_name",
+    Key="file_name",
+    Filename="path/file_name")
