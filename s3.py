@@ -65,3 +65,38 @@ for i in response.get("Contents",None):
 client.download_file(Bucket="bucket_name",
     Key="file_name",
     Filename="path/file_name")
+
+
+
+
+
+
+def descargar_prefix(prefix):
+    """
+    Esta función obtiene todos un listado de todos los files 
+    que contienen cierto prefijo, los descarga, 
+    los extrae en una carpeta llamada "unpack"
+    Y luego elimina los archivos.
+    """
+    # listado de los files con el prefijo:
+    paginator = client.get_paginator('list_objects_v2')
+    pages = paginator.paginate(Bucket='u-wigo-events',Prefix='production/2021/01')
+    count = 1
+    for page in pages:
+        for obj in page['Contents']:
+            nombre_file = obj.get("Key",None)
+            client.download_file(Bucket=bucket,Key=nombre_file,Filename=path+'/descargas/file{}.json.gz'.format(count)) 
+            print(f"Archivo {nombre_file} descargado como file{count}")
+            count = count + 1 
+            if count >= 500: 
+                continue
+
+        
+    # rescatamos todos los files con el prefijo
+    #os.chdir("descargas")
+    lista_files = os.listdir()
+    print(lista_files)
+    for archivo in lista_files:
+        patoolib.extract_archive(archivo,outdir="unpack")
+        if os.path.exists(archivo):
+            os.remove(archivo)
