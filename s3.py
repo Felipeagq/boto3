@@ -71,7 +71,7 @@ client.download_file(Bucket="bucket_name",
 
 
 
-def descargar_prefix(prefix):
+def descargar_prefix(prefix,path):
     """
     Esta función obtiene todos un listado de todos los files 
     que contienen cierto prefijo, los descarga, 
@@ -90,15 +90,3 @@ def descargar_prefix(prefix):
             count = count + 1 
             if count >= 500: 
                 continue
-
-        
-    # rescatamos todos los files con el prefijo
-    #os.chdir("descargas")
-    lista_files = os.listdir()
-    print(lista_files)
-    for archivo in lista_files:
-        patoolib.extract_archive(archivo,outdir="unpack")
-        if os.path.exists(archivo):
-            os.remove(archivo)
-            
-            
