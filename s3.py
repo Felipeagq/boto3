@@ -39,6 +39,8 @@ response = client.put_object(
 )
 
 
+print("ajajaj")
+
 # Delete a file from s3
 # Eliminar un archivo del s3
 response = client.delete_object(
