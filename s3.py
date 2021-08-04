@@ -47,6 +47,10 @@ response = client.delete_object(
 )
 
 
+
+
+
+
 # Get the list of objects in s3
 # Obtener una lista de los objetos del s3
 response = client.list_objects(
