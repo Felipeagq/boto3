@@ -32,7 +32,7 @@ with open("file","rb") as f:
     data = f.read()
 # defenimos el cliente
 response = client.put_object(
-    'private'|'public-read'|'public-read-write'|'authenticated-read'|'aws-exec-read'|'bucket-owner-read'|'bucket-owner-full-control',
+    ACL= 'private'|'public-read'|'public-read-write'|'authenticated-read'|'aws-exec-read'|'bucket-owner-read'|'bucket-owner-full-control',
     Body= data,
     Bucket = "bucket_name",
     Key="file_name"
